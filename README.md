@@ -86,6 +86,10 @@ npm run deploy
 
 This runs `vite build` then `gh-pages -d dist`, which pushes `dist/` to the `gh-pages` branch. GitHub Pages serves from that branch automatically.
 
+> **Important:** The live site serves from the `gh-pages` branch, not from your local files. Every time you make changes, you must run `npm run deploy` again to update the live site. Local edits will never appear on GitHub Pages until you redeploy.
+
+After deploying, wait ~1 minute then hard-refresh the live URL with **Cmd+Shift+R** (Mac) or **Ctrl+Shift+R** (Windows) to bypass the browser cache.
+
 ---
 
 ## Design System
