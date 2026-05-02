@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg:          #020305;
+  --color-surface:     #080b10;
+  --color-surface-2:   #0c1018;
+  --color-border:      #131920;
+  --color-accent:      #00ff88;
+  --color-accent-2:    #0ea5e9;
+  --color-accent-3:    #a855f7;
+  --color-text:        #8892a4;
+  --color-text-muted:  #3d4a5c;
+  --color-text-bright: #e2e8f0;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: auto; }
+
+body {
+  margin: 0;
+  background: #020305;
+  color: #8892a4;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: #020305; }
+::-webkit-scrollbar-thumb { background: #00ff8840; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #00ff88; }
+
+/* ── Selection ──────────────────────────────────────── */
+::selection { background: rgba(0,255,136,0.2); color: #e2e8f0; }
+
+/* ── Noise grain overlay ────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.6;
+}
+
+/* ── Custom cursor ──────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  width: 6px; height: 6px;
+  background: #00ff88;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, background 0.2s;
+  box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff8880;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(0,255,136,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s, height 0.25s, border-color 0.25s, transform 0.08s;
+}
+.cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(0,255,136,0.8); }
+
+/* ── Glow text ──────────────────────────────────────── */
+.glow-green { text-shadow: 0 0 20px rgba(0,255,136,0.7), 0 0 40px rgba(0,255,136,0.3); }
+.glow-blue  { text-shadow: 0 0 20px rgba(14,165,233,0.7), 0 0 40px rgba(14,165,233,0.3); }
+
+/* ── Gradient border util ───────────────────────────── */
+.g-border {
+  position: relative;
+  isolation: isolate;
+}
+.g-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0,255,136,0.35) 0%, transparent 50%, rgba(14,165,233,0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Dot grid bg ────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(rgba(0,255,136,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Float keyframe ─────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+.float { animation: float 5s ease-in-out infinite; }
+
+/* ── Blink cursor ───────────────────────────────────── */
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+.blink { animation: blink 1s step-end infinite; }
+
+/* ── Scan line ──────────────────────────────────────── */
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanline::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,136,0.04), transparent);
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* ── Syntax tokens ──────────────────────────────────── */
+.tok-key     { color: #7dd3fc; }
+.tok-str     { color: #86efac; }
+.tok-num     { color: #f9a8d4; }
+.tok-bool    { color: #c4b5fd; }
+.tok-comment { color: #374151; font-style: italic; }
+.tok-punct   { color: #94a3b8; }
+.tok-kw      { color: #c4b5fd; }
+
+/* ── Animated underline ─────────────────────────────── */
+.u-line {
+  position: relative;
+}
+.u-line::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: #00ff88;
+  transition: width 0.3s ease;
+}
+.u-line:hover::after { width: 100%; }
+
+/* ── Section label ──────────────────────────────────── */
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #00ff88;
+}
