@@ -107,6 +107,15 @@ export const education = {
   location: 'Chiang Mai, Thailand',
 }
 
+export const stages = [
+  { id: 'hero',           num: 1, codename: 'PROFILE',   xp: 500,  desc: 'Identify the operator' },
+  { id: 'about',          num: 2, codename: 'ORIGINS',   xp: 700,  desc: 'Read background lore' },
+  { id: 'skills',         num: 3, codename: 'ARSENAL',   xp: 1200, desc: 'Inventory unlocked tools' },
+  { id: 'experience',     num: 4, codename: 'QUESTS',    xp: 2400, desc: 'Mission history' },
+  { id: 'certifications', num: 5, codename: 'TROPHIES',  xp: 1800, desc: 'Earned achievements' },
+  { id: 'contact',        num: 6, codename: 'BOSS',      xp: 1800, desc: 'Initiate contact protocol' },
+]
+
 export const aboutJson = {
   name: 'Nuttawut Sukaew',
   handle: 'ntwsk',

@@ -45,7 +45,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="sec-label mb-3">05 — Contact</p>
+          <p className="sec-label mb-3">STAGE 06 — BOSS FIGHT</p>
           <h2
             className="font-sans text-4xl lg:text-5xl font-bold mb-6"
             style={{ color: '#e2e8f0', letterSpacing: '-0.03em' }}

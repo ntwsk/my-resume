@@ -160,3 +160,10 @@ body::before {
   text-transform: uppercase;
   color: #00ff88;
 }
+
+/* ── Stage pulse (active stage indicator) ──────────── */
+@keyframes stage-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.stage-pulse { animation: stage-pulse 1.2s ease-in-out infinite; }

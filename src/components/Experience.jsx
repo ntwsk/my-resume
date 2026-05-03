@@ -111,7 +111,7 @@ export default function Experience() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <p className="sec-label mb-3">03 — Experience</p>
+          <p className="sec-label mb-3">STAGE 04 — QUESTS</p>
           <h2 className="font-sans text-3xl lg:text-4xl font-bold" style={{ color: '#e2e8f0', letterSpacing: '-0.02em' }}>
             Career Timeline
           </h2>

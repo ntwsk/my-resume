@@ -61,7 +61,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <p className="sec-label mb-3">01 — About</p>
+          <p className="sec-label mb-3">STAGE 02 — ORIGINS</p>
           <h2 className="font-sans text-3xl lg:text-4xl font-bold" style={{ color: '#e2e8f0', letterSpacing: '-0.02em' }}>
             Who I Am
           </h2>

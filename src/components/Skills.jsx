@@ -69,7 +69,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <p className="sec-label mb-3">02 — Skills</p>
+          <p className="sec-label mb-3">STAGE 03 — ARSENAL</p>
           <h2 className="font-sans text-3xl lg:text-4xl font-bold" style={{ color: '#e2e8f0', letterSpacing: '-0.02em' }}>
             Tech Stack
           </h2>

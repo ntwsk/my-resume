@@ -88,7 +88,7 @@ export default function Certifications() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <p className="sec-label mb-3">04 — Credentials</p>
+          <p className="sec-label mb-3">STAGE 05 — TROPHIES</p>
           <h2 className="font-sans text-3xl lg:text-4xl font-bold" style={{ color: '#e2e8f0', letterSpacing: '-0.02em' }}>
             Certifications
           </h2>

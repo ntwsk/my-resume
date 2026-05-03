@@ -2,6 +2,9 @@ import './index.css'
 import useLenis from './hooks/useLenis'
 import Cursor from './components/Cursor'
 import Navbar from './components/Navbar'
+import GameHUD from './components/GameHUD'
+import StageNav from './components/StageNav'
+import StageToast from './components/StageToast'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
@@ -16,6 +19,9 @@ export default function App() {
     <div className="scanline" style={{ background: '#020305' }}>
       <Cursor />
       <Navbar />
+      <GameHUD />
+      <StageNav />
+      <StageToast />
       <main>
         <Hero />
         <About />
