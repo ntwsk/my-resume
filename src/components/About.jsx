@@ -23,7 +23,7 @@ function JsonArray({ items }) {
 }
 
 const lines = [
-  { t: 'comment', text: '// profile.ts — Nuttawut Sukaew' },
+  { t: 'comment', text: '// profile.ts — Nuttawut Sukaew (Teng)' },
   { t: 'blank' },
   { t: 'code', indent: 0, content: (
     <><span className="tok-kw">const</span> <span className="tok-key">profile</span> <Punct c="= {" /></>
@@ -126,8 +126,7 @@ export default function About() {
           >
             {[
               { label: 'Years of Experience', value: '6+', color: '#00ff88', desc: 'Salesforce development & support' },
-              { label: 'Support Tickets Handled', value: '300+', color: '#0ea5e9', desc: 'At I&I Group — 24/7 on-call' },
-              { label: 'Certifications', value: '8', color: '#a855f7', desc: 'AWS · Salesforce · 7 active, 1 retired' },
+              { label: 'Certifications', value: '7', color: '#a855f7', desc: 'AWS · Salesforce — all active' },
               { label: 'Companies', value: '3', color: '#f59e0b', desc: 'I&I Group · Accenture · ATA IT Limited' },
             ].map((stat, i) => (
               <motion.div

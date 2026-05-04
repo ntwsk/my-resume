@@ -1,5 +1,5 @@
 export const profile = {
-  name: 'Nuttawut Sukaew',
+  name: 'Nuttawut Sukaew (Teng)',
   handle: '@ntwsk',
   role: 'Salesforce Developer',
   company: 'ATA IT Limited (National Bank of Canada group)',
@@ -23,12 +23,21 @@ export const skills = [
   { name: 'Dialogflow CX', category: 'cloud' },
   { name: 'AWS', category: 'cloud' },
   { name: 'GCP / Kibana', category: 'cloud' },
+  { name: 'Claude Code', category: 'ai' },
+  { name: 'GitHub Copilot', category: 'ai' },
+  { name: 'Agentforce', category: 'ai' },
   { name: 'JavaScript', category: 'dev' },
   { name: 'Python', category: 'dev' },
   { name: 'Robot Framework', category: 'dev' },
   { name: 'REST / GraphQL', category: 'dev' },
   { name: 'Git / CI-CD', category: 'dev' },
   { name: 'React', category: 'dev' },
+  { name: 'GitHub Actions', category: 'dev' },
+  { name: 'Tailwind CSS', category: 'dev' },
+  { name: 'Vite', category: 'dev' },
+  { name: 'Release Management', category: 'automation' },
+  { name: 'Workflow Automation', category: 'automation' },
+  { name: 'AI Integration', category: 'automation' },
 ]
 
 export const experience = [
@@ -38,11 +47,35 @@ export const experience = [
     role: 'Salesforce Developer',
     period: 'Feb 2025 – Present',
     type: 'Full-time',
-    highlights: [
-      'Building Salesforce solutions with Apex, Aura, and LWC',
-      'Designing and implementing custom integrations with REST APIs',
-      'Collaborating with business analysts to deliver feature requirements',
-      'Performing code reviews and maintaining module stability',
+    roles: [
+      {
+        title: 'Private Banking Platform (Financial Services)',
+        highlights: [
+          'Delivered new feature development for a high-value client platform, maintaining strong quality with only 2% defect rate.',
+          'Implemented 70+ enhancement tickets, improving system performance and user experience across key financial workflows.',
+          'Increased test coverage across 46 classes, strengthening reliability and reducing regression risks.',
+          'Refactored legacy code and optimised UI/flows, improving maintainability and scalability.',
+          'Led end-to-end review of all upcoming Salesforce releases for the platform, identifying risks, dependencies, and improvement opportunities.',
+          'Presented actionable release insights to stakeholders, improving release readiness and decision-making.',
+          'Designed and implemented workflow automation for release handling, reducing manual effort from 1–2 weeks to ~30 minutes and increasing deployment efficiency.',
+          'Shared release review findings and impact analysis with cross-functional Salesforce teams, fostering alignment and proactive risk mitigation across all platform stakeholders.',
+        ],
+      },
+      {
+        title: 'Customer Service Case Management Platform',
+        highlights: [
+          'Supported case-resolution workflows for a customer-service team handling 800+ cases per day, ensuring timely issue handling and system stability.',
+          'Collaborated end-to-end with cross-functional teams to enhance Omni-Channel business workflows, minimising business impact and boosting productivity.',
+        ],
+      },
+      {
+        title: 'Digital Sales Platform',
+        highlights: [
+          'Delivered enhancements with DocuSign integration to ensure seamless document and data flow across platforms.',
+          'Reduced operational costs by replacing a $99/month third-party unsubscribe tool with an in-house free solution.',
+          'Implemented security enhancements and improved business workflows to align with compliance and user needs.',
+        ],
+      },
     ],
   },
   {
@@ -185,9 +218,9 @@ export const stages = [
 ]
 
 export const aboutJson = {
-  name: 'Nuttawut Sukaew',
+  name: 'Nuttawut Sukaew (Teng)',
   handle: 'ntwsk',
-  role: 'Software Engineer',
+  role: 'Salesforce Developer',
   currentCompany: 'ATA IT Limited (National Bank of Canada group)',
   previousCompanies: ['Accenture', 'I&I Group Public Company Limited'],
   skills: ['Apex', 'Aura Component', 'LWC', 'Salesforce Flow', 'Marketing Cloud', 'Dialogflow CX'],

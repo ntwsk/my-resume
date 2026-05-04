@@ -3,11 +3,13 @@ import Tilt from 'react-parallax-tilt'
 import { skills } from '../data/resume'
 
 const categoryMeta = {
-  salesforce: { label: 'Salesforce Platform', color: '#00a1e0', glyph: 'SF' },
-  cloud:      { label: 'Cloud & AI',          color: '#ff9900', glyph: 'CL' },
-  dev:        { label: 'Development',         color: '#00ff88', glyph: 'DV' },
+  salesforce: { label: 'Salesforce Platform',  color: '#00a1e0', glyph: 'SF' },
+  cloud:      { label: 'Cloud',                color: '#ff9900', glyph: 'CL' },
+  ai:         { label: 'AI',                   color: '#06b6d4', glyph: 'AI' },
+  dev:        { label: 'Development',          color: '#00ff88', glyph: 'DV' },
+  automation: { label: 'Process & Automation', color: '#a855f7', glyph: 'PA' },
 }
-const categoryOrder = ['salesforce', 'cloud', 'dev']
+const categoryOrder = ['salesforce', 'cloud', 'ai', 'dev', 'automation']
 
 function SkillBadge({ skill, index, catColor }) {
   return (

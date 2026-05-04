@@ -102,7 +102,7 @@ export default function Contact() {
         >
           <div className="flex items-center justify-center gap-2 font-mono text-xs mb-1" style={{ color: '#3d4a5c' }}>
             <Terminal size={12} />
-            <span>Built end-to-end by Nuttawut Sukaew</span>
+            <span>Built end-to-end by Nuttawut Sukaew (Teng)</span>
           </div>
           <p className="font-mono text-xs mb-2" style={{ color: '#a855f7', opacity: 0.7 }}>
             100% vibe-coded with Claude Code — zero lines written

@@ -8,16 +8,19 @@ const AVATAR_URL = `${import.meta.env.BASE_URL}my-image.png`
 // Animated terminal lines
 const TERMINAL_LINES = [
   { delay: 0.5,  text: '$ whoami',                                         color: '#00ff88' },
-  { delay: 0.9,  text: 'Nuttawut Sukaew',                                  color: '#e2e8f0' },
+  { delay: 0.9,  text: 'Nuttawut Sukaew (Teng)',                           color: '#e2e8f0' },
   { delay: 1.3,  text: '$ cat role.txt',                                   color: '#00ff88' },
   { delay: 1.6,  text: 'Salesforce Developer',                             color: '#7dd3fc' },
   { delay: 1.9,  text: '@ ATA IT Limited (National Bank of Canada group)', color: '#7dd3fc' },
   { delay: 2.4,  text: '$ cat experience.txt',                             color: '#00ff88' },
   { delay: 2.7,  text: 'Former Accenture & I&I Group — 6+ years',         color: '#e2e8f0' },
-  { delay: 3.1,  text: '$ cat stack.txt',                                  color: '#00ff88' },
-  { delay: 3.4,  text: 'Apex · LWC · Aura · SF Flow · SOQL',              color: '#a855f7' },
-  { delay: 3.7,  text: 'Marketing Cloud · Dialogflow CX · AWS',           color: '#a855f7' },
-  { delay: 4.0,  text: 'JavaScript · Python · Robot Framework',           color: '#a855f7' },
+  { delay: 3.1,  text: '$ cat stack.txt',                                        color: '#00ff88' },
+  { delay: 3.3,  text: '> Salesforce Platform',                                 color: '#3d4a5c' },
+  { delay: 3.5,  text: 'Apex · LWC · Aura · SF Flow · SOQL · Marketing Cloud', color: '#a855f7' },
+  { delay: 3.8,  text: '> Modern Website Development',                          color: '#3d4a5c' },
+  { delay: 4.0,  text: 'React · Vite · Tailwind',                               color: '#a855f7' },
+  { delay: 4.3,  text: '> AI',                                                  color: '#3d4a5c' },
+  { delay: 4.5,  text: 'Claude Code · GitHub Copilot · Agentforce',            color: '#a855f7' },
 ]
 
 // Floating particle
@@ -265,7 +268,7 @@ export default function Hero() {
                 </div>
 
                 {/* Terminal body */}
-                <div className="p-4 font-mono text-xs leading-7 min-h-[280px]">
+                <div className="p-4 font-mono text-xs leading-7 min-h-[340px]">
                   {typed.map((line, i) => (
                     <motion.div
                       key={i}
@@ -294,7 +297,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 4.5 }}
+        transition={{ delay: 5.0 }}
         className="relative z-10 flex flex-col items-center gap-2 pb-8"
       >
         <motion.div
