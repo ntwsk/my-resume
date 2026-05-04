@@ -7,12 +7,17 @@ const AVATAR_URL = `${import.meta.env.BASE_URL}my-image.png`
 
 // Animated terminal lines
 const TERMINAL_LINES = [
-  { delay: 0.6,  text: '$ whoami',                             color: '#00ff88' },
-  { delay: 1.0,  text: 'Nuttawut Sukaew — Salesforce Dev',      color: '#e2e8f0' },
-  { delay: 1.5,  text: '$ cat stack.txt',                      color: '#00ff88' },
-  { delay: 1.9,  text: 'Apex · Aura · LWC · Marketing Cloud',  color: '#7dd3fc' },
-  { delay: 2.4,  text: '$ echo $STATUS',                       color: '#00ff88' },
-  { delay: 2.8,  text: 'Available for exciting opportunities ✓', color: '#a855f7' },
+  { delay: 0.5,  text: '$ whoami',                                         color: '#00ff88' },
+  { delay: 0.9,  text: 'Nuttawut Sukaew',                                  color: '#e2e8f0' },
+  { delay: 1.3,  text: '$ cat role.txt',                                   color: '#00ff88' },
+  { delay: 1.6,  text: 'Salesforce Developer',                             color: '#7dd3fc' },
+  { delay: 1.9,  text: '@ ATA IT Limited (National Bank of Canada group)', color: '#7dd3fc' },
+  { delay: 2.4,  text: '$ cat experience.txt',                             color: '#00ff88' },
+  { delay: 2.7,  text: 'Former Accenture & I&I Group — 6+ years',         color: '#e2e8f0' },
+  { delay: 3.1,  text: '$ cat stack.txt',                                  color: '#00ff88' },
+  { delay: 3.4,  text: 'Apex · LWC · Aura · SF Flow · SOQL',              color: '#a855f7' },
+  { delay: 3.7,  text: 'Marketing Cloud · Dialogflow CX · AWS',           color: '#a855f7' },
+  { delay: 4.0,  text: 'JavaScript · Python · Robot Framework',           color: '#a855f7' },
 ]
 
 // Floating particle
@@ -131,10 +136,10 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="inline-flex items-center gap-2 mb-8 px-3 py-1.5 rounded-full font-mono text-xs"
-                style={{ background: 'rgba(0,255,136,0.06)', border: '1px solid rgba(0,255,136,0.2)', color: '#00ff88' }}
+                style={{ background: 'rgba(168,85,247,0.06)', border: '1px solid rgba(168,85,247,0.2)', color: '#a855f7' }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-                Available for new opportunities
+                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#a855f7]" />
+                Anime &amp; YouTube 24/7 &amp; Vibe coding with AI enthusiast
               </motion.div>
 
               {/* Name */}
@@ -147,37 +152,6 @@ export default function Hero() {
               >
                 {profile.name}
               </motion.h1>
-
-              {/* Role */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="font-mono text-base mb-1"
-                style={{ color: '#00ff88' }}
-              >
-                {profile.headline}
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="font-mono text-sm mb-8"
-                style={{ color: '#3d4a5c' }}
-              >
-                {profile.subheadline}
-              </motion.div>
-
-              {/* Bio */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                className="text-base leading-relaxed mb-10 max-w-lg"
-                style={{ color: '#8892a4' }}
-              >
-                {profile.bio}
-              </motion.p>
 
               {/* CTA row */}
               <motion.div
@@ -194,7 +168,7 @@ export default function Hero() {
                   onMouseLeave={(e) => { e.currentTarget.style.boxShadow = '0 0 24px rgba(0,255,136,0.35)' }}
                 >
                   <ExternalLink size={14} />
-                  Hire Me
+                  Email Me
                 </a>
                 <a
                   href={profile.github}
@@ -272,12 +246,6 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* Status badge */}
-                <div className="absolute bottom-4 right-1 flex items-center gap-1.5 px-2.5 py-1 rounded-full font-mono text-xs"
-                  style={{ background: '#020305', border: '1px solid rgba(0,255,136,0.3)', color: '#00ff88' }}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-                  Online
-                </div>
               </motion.div>
 
               {/* Terminal widget */}
@@ -297,7 +265,7 @@ export default function Hero() {
                 </div>
 
                 {/* Terminal body */}
-                <div className="p-4 font-mono text-xs leading-7 min-h-[160px]">
+                <div className="p-4 font-mono text-xs leading-7 min-h-[280px]">
                   {typed.map((line, i) => (
                     <motion.div
                       key={i}
@@ -326,7 +294,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 3 }}
+        transition={{ delay: 4.5 }}
         className="relative z-10 flex flex-col items-center gap-2 pb-8"
       >
         <motion.div

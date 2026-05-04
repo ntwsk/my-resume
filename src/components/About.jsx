@@ -40,8 +40,6 @@ const lines = [
   { t: 'code', indent: 2, content: <><span className="tok-key">"university"</span><Punct c=": " /><JsonStr v={aboutJson.education.university} /></> },
   { t: 'code', indent: 2, content: <><span className="tok-key">"year"</span><Punct c=": " /><JsonNum v={aboutJson.education.year} /></> },
   { t: 'code', indent: 1, content: <><Punct c="}" /></> },
-  { t: 'code', indent: 1, content: <><span className="tok-key">"remote"</span><Punct c=": " /><JsonBool v={aboutJson.remote} /></> },
-  { t: 'code', indent: 1, content: <><span className="tok-key">"openToWork"</span><Punct c=": " /><JsonBool v={aboutJson.openToWork} /></> },
   { t: 'code', indent: 1, content: <><span className="tok-key">"location"</span><Punct c=": " /><JsonStr v={aboutJson.location} /></> },
   { t: 'code', indent: 0, content: <><Punct c="}" /></> },
 ]
@@ -127,10 +125,10 @@ export default function About() {
             className="flex flex-col gap-5"
           >
             {[
-              { label: 'Years of Experience', value: '4+', color: '#00ff88', desc: 'Salesforce development & support' },
+              { label: 'Years of Experience', value: '6+', color: '#00ff88', desc: 'Salesforce development & support' },
               { label: 'Support Tickets Handled', value: '300+', color: '#0ea5e9', desc: 'At I&I Group — 24/7 on-call' },
-              { label: 'Salesforce Certifications', value: '3×', color: '#a855f7', desc: 'Associate · Admin · App Builder' },
-              { label: 'Companies', value: '3', color: '#f59e0b', desc: 'I&I Group · Accenture · ATA IT' },
+              { label: 'Certifications', value: '8', color: '#a855f7', desc: 'AWS · Salesforce · 7 active, 1 retired' },
+              { label: 'Companies', value: '3', color: '#f59e0b', desc: 'I&I Group · Accenture · ATA IT Limited' },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}

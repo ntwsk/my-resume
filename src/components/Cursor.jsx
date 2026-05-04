@@ -1,11 +1,13 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Cursor() {
   const dot  = useRef(null)
   const ring = useRef(null)
+  const [isMobile] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
+  )
 
   useEffect(() => {
-    const isMobile = window.matchMedia('(hover: none)').matches
     if (isMobile) return
 
     let mx = 0, my = 0
@@ -46,7 +48,9 @@ export default function Cursor() {
       cancelAnimationFrame(raf)
       document.removeEventListener('mousemove', onMove)
     }
-  }, [])
+  }, [isMobile])
+
+  if (isMobile) return null
 
   return (
     <>

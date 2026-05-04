@@ -108,7 +108,7 @@ export default function Navbar() {
               onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(0,255,136,0.15)' }}
               onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(0,255,136,0.08)' }}
             >
-              hire me
+              email me
             </motion.a>
           </nav>
 

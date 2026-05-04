@@ -1,13 +1,16 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
-import { Cloud, Code, Settings, Layers, Award, GraduationCap } from 'lucide-react'
+import { Cloud, Code, Settings, Layers, Award, GraduationCap, ExternalLink } from 'lucide-react'
 import { certifications, education } from '../data/resume'
 
 const iconMap = { cloud: Cloud, code: Code, settings: Settings, layers: Layers }
 
+const GROUP_META = {
+  'Amazon Web Services': { color: '#ff9900', linkLabel: 'Verify on Credly' },
+  'Salesforce':          { color: '#00a1e0', linkLabel: 'View on Trailhead' },
+}
+
 function CertCard({ cert, index }) {
-  const [flipped, setFlipped] = useState(false)
   const Icon = iconMap[cert.icon] ?? Award
 
   return (
@@ -31,13 +34,13 @@ function CertCard({ cert, index }) {
         className="h-full"
       >
         <div
-          className="g-border rounded-2xl p-6 h-full flex flex-col cursor-pointer select-none"
+          className="g-border rounded-2xl p-6 h-full flex flex-col select-none"
           style={{
             background: '#080b10',
             minHeight: 180,
             transition: 'box-shadow 0.3s',
+            opacity: cert.retired ? 0.6 : 1,
           }}
-          onClick={() => setFlipped(!flipped)}
           onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 20px 50px ${cert.color}12` }}
           onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none' }}
         >
@@ -46,6 +49,16 @@ function CertCard({ cert, index }) {
             className="absolute top-0 inset-x-0 h-px rounded-t-2xl"
             style={{ background: `linear-gradient(90deg, transparent, ${cert.color}60, transparent)` }}
           />
+
+          {/* Retired badge */}
+          {cert.retired && (
+            <div
+              className="absolute top-3 right-3 px-2 py-0.5 rounded font-mono"
+              style={{ fontSize: '9px', letterSpacing: '0.1em', background: 'rgba(107,114,128,0.15)', border: '1px solid rgba(107,114,128,0.3)', color: '#6b7280' }}
+            >
+              RETIRED
+            </div>
+          )}
 
           {/* Icon */}
           <div
@@ -60,7 +73,7 @@ function CertCard({ cert, index }) {
             {cert.name}
           </p>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <p className="font-mono text-xs" style={{ color: '#3d4a5c' }}>{cert.issuer}</p>
             </div>
@@ -71,6 +84,7 @@ function CertCard({ cert, index }) {
               {cert.year}
             </span>
           </div>
+
         </div>
       </Tilt>
     </motion.div>
@@ -94,11 +108,59 @@ export default function Certifications() {
           </h2>
         </motion.div>
 
-        {/* Cert grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {certifications.map((cert, i) => (
-            <CertCard key={cert.id} cert={cert} index={i} />
-          ))}
+        {/* Cert groups */}
+        <div className="space-y-10 mb-16">
+          {(() => {
+            const groups = []
+            const seen = {}
+            certifications.forEach((cert) => {
+              if (!seen[cert.issuer]) {
+                seen[cert.issuer] = { issuer: cert.issuer, link: cert.link, certs: [] }
+                groups.push(seen[cert.issuer])
+              }
+              seen[cert.issuer].certs.push(cert)
+            })
+            return groups.map(({ issuer, link, certs }) => {
+              const meta = GROUP_META[issuer] ?? { color: '#8892a4', linkLabel: 'Verify' }
+              return (
+                <div key={issuer}>
+                  {/* Group header */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-4 mb-5"
+                  >
+                    <span className="font-mono text-xs tracking-widest uppercase shrink-0" style={{ color: meta.color }}>
+                      {issuer}
+                    </span>
+                    <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${meta.color}20, transparent)` }} />
+                    <span className="font-mono text-xs shrink-0" style={{ color: '#3d4a5c' }}>{certs.length}</span>
+                    {link && (
+                      <a
+                        href={link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 font-mono text-xs transition-colors shrink-0"
+                        style={{ color: '#3d4a5c', textDecoration: 'none' }}
+                        onMouseEnter={(e) => { e.currentTarget.style.color = meta.color }}
+                        onMouseLeave={(e) => { e.currentTarget.style.color = '#3d4a5c' }}
+                      >
+                        <ExternalLink size={10} />
+                        {meta.linkLabel}
+                      </a>
+                    )}
+                  </motion.div>
+                  {/* Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    {certs.map((cert, i) => (
+                      <CertCard key={cert.id} cert={cert} index={i} />
+                    ))}
+                  </div>
+                </div>
+              )
+            })
+          })()}
         </div>
 
         {/* Education */}

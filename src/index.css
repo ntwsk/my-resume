@@ -19,6 +19,14 @@
 
 html { scroll-behavior: auto; }
 
+/* On touch devices Lenis is disabled, so use native CSS smooth scroll for anchor jumps */
+@media (hover: none) {
+  html { scroll-behavior: smooth; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+  /* Reserve space at the bottom for the mobile game HUD bar (+ iPhone home-indicator safe area) */
+  main { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+}
+
 body {
   margin: 0;
   background: #020305;

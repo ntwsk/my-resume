@@ -64,6 +64,7 @@ export default function GameHUD() {
           background: 'rgba(2,3,5,0.92)',
           backdropFilter: 'blur(12px)',
           borderTop: '1px solid rgba(0,255,136,0.1)',
+          paddingBottom: 'env(safe-area-inset-bottom)',
         }}
       >
         <div className="flex items-center gap-3 px-4 py-2.5">

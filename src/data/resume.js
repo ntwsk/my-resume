@@ -2,14 +2,14 @@ export const profile = {
   name: 'Nuttawut Sukaew',
   handle: '@ntwsk',
   role: 'Salesforce Developer',
-  company: 'ATA IT',
-  headline: 'Salesforce Developer @ ATA IT',
-  subheadline: 'Former Accenture & I&I Group Senior Developer',
+  company: 'ATA IT Limited (National Bank of Canada group)',
+  headline: 'Salesforce Developer @ ATA IT Limited (National Bank of Canada group)',
+  subheadline: 'Former Accenture & I&I Group Salesforce Developer',
   location: 'Thailand',
   email: 'ntwsk.tt@gmail.com',
   github: 'https://github.com/ntwsk',
   linkedin: 'https://www.linkedin.com/in/nuttawut-sukaew-478232212/',
-  bio: 'Senior Salesforce Developer with 4+ years building CRM solutions across Accenture and I&I Group. Specialist in Apex, Aura, LWC, Marketing Cloud, and Dialogflow CX. Passionate about clean architecture, automated testing, and reliable integrations.',
+  bio: 'Senior Salesforce Developer with 6+ years building CRM solutions across I&I Group, Accenture, and ATA IT. Specialist in Apex, Aura, LWC, Marketing Cloud, and Dialogflow CX. Passionate about clean architecture, automated testing, and reliable integrations.',
 }
 
 export const skills = [
@@ -34,9 +34,9 @@ export const skills = [
 export const experience = [
   {
     id: 1,
-    company: 'ATA IT',
+    company: 'ATA IT Limited (National Bank of Canada group)',
     role: 'Salesforce Developer',
-    period: '2024 – Present',
+    period: 'Feb 2025 – Present',
     type: 'Full-time',
     highlights: [
       'Building Salesforce solutions with Apex, Aura, and LWC',
@@ -48,27 +48,56 @@ export const experience = [
   {
     id: 2,
     company: 'Accenture',
-    role: 'Salesforce Developer',
-    period: 'Nov 2023 – 2024',
+    role: 'Senior Salesforce Developer & Support',
+    period: 'Nov 2023 – Feb 2025',
     type: 'Full-time',
-    highlights: [
-      'Implemented complex change requests and resolved defects ensuring alignment with business requirements',
-      'Proactively analyzed impact of changes, reviewed code, and performed unit testing to maintain stability',
-      'Collaborated closely with stakeholder teams throughout the development lifecycle',
+    roles: [
+      {
+        title: 'Salesforce Development',
+        highlights: [
+          'Implemented complex change requests and supported defect resolutions during developments, ensuring all changes align with business requirements.',
+          'Proactively collaborated with stakeholder team, analyzed the impact of change, reviewed codes, and performed unit testing to maintain module stability.',
+        ],
+      },
+      {
+        title: 'Salesforce Support Specialist',
+        highlights: [
+          'Managed and resolved incidents, maintained system integrity and functionality, implemented enhancements, executed reports, supported deployments, and monitored both within Salesforce platforms and by using Kibana for the Assisted Sales and Assisted Servicing Contact Center.',
+          'Involved over 300 tickets, ensuring ongoing reliability by quickly addressing issues and concerns, collaborating with stakeholders, and providing 24/7 on-call support.',
+        ],
+      },
+      {
+        title: 'Dialogflow CX Support Specialist',
+        highlights: [
+          'Investigated and supported team, especially with Thai language areas, while resolving problems within the Dialogflow CX platform for Chat Bot and Voice Bot.',
+          "Monitored platform by GCP Logger and using Kibana, and communicated promptly with stakeholders to address customer concerns, ensuring the platform's reliability, and providing 24/7 on-call support.",
+        ],
+      },
     ],
   },
   {
     id: 3,
     company: 'I&I Group Public Company Limited',
-    role: 'Salesforce Developer & Support Specialist',
+    role: 'Salesforce Developer',
     period: 'Jun 2020 – Nov 2023',
     type: 'Full-time',
-    highlights: [
-      'Designed and implemented custom solutions for Campaign Management and Online Booking using Salesforce development tools',
-      'Managed 300+ support tickets as Salesforce Support Specialist — maintained platform integrity and 24/7 on-call reliability',
-      'Integrated Salesforce with Marketing Cloud, developed Journey Builder flows and multi-channel automation',
-      'Investigated and resolved Thai-language issues in Dialogflow CX for Chat Bot & Voice Bot; monitored via GCP Logger and Kibana',
-      'Developed and executed automated test scripts using Robot Framework; ensured seamless third-party integrations',
+    roles: [
+      {
+        title: 'Salesforce Development, Integration & Automated Testing',
+        highlights: [
+          'Designed, implemented, and maintained custom solutions for Campaign Management and Online Booking Systems using Salesforce development tools.',
+          'Ensured seamless integration with third-party tools and channels, optimized existing systems, and resolved technical issues by analyzing logs and debugging code.',
+          'Developed and executed automated test scripts using Robot Framework.',
+          'Collaborated closely with functional teams and business analysts to align solutions with business requirements.',
+        ],
+      },
+      {
+        title: 'Marketing Cloud Specialist',
+        highlights: [
+          'Integrated Salesforce platforms with Marketing Cloud, developed marketing flows, created automation processes, and utilized Journey Builder for multi-channel campaigns.',
+          'Coordinated with business analysts to execute strategic marketing initiatives.',
+        ],
+      },
     ],
   },
 ]
@@ -76,27 +105,66 @@ export const experience = [
 export const certifications = [
   {
     id: 1,
-    name: 'Salesforce Associate',
-    issuer: 'Salesforce',
-    year: '2023',
-    color: '#00a1e0',
-    icon: 'layers',
+    name: 'AWS Cloud Practitioner',
+    issuer: 'Amazon Web Services',
+    year: '2025',
+    color: '#ff9900',
+    icon: 'cloud',
+    link: 'https://www.credly.com/badges/cae03e9a-8054-4ed1-a7ed-7d5d59e8727a/linked_in_profile',
   },
   {
     id: 2,
-    name: 'Salesforce Administrator',
+    name: 'Salesforce Platform Foundations',
     issuer: 'Salesforce',
-    year: '2022',
+    year: '2024',
     color: '#00a1e0',
-    icon: 'settings',
+    icon: 'layers',
+    link: 'https://www.salesforce.com/trailblazer/ntwsk',
   },
   {
     id: 3,
-    name: 'Salesforce Platform App Builder',
+    name: 'Salesforce App Builder',
     issuer: 'Salesforce',
-    year: '2023',
+    year: '2024',
     color: '#34d36e',
     icon: 'code',
+    link: 'https://www.salesforce.com/trailblazer/ntwsk',
+  },
+  {
+    id: 4,
+    name: 'Salesforce Administrator',
+    issuer: 'Salesforce',
+    year: '2024',
+    color: '#00a1e0',
+    icon: 'settings',
+    link: 'https://www.salesforce.com/trailblazer/ntwsk',
+  },
+  {
+    id: 5,
+    name: 'Salesforce Platform Developer I',
+    issuer: 'Salesforce',
+    year: '2024',
+    color: '#34d36e',
+    icon: 'code',
+    link: 'https://www.salesforce.com/trailblazer/ntwsk',
+  },
+  {
+    id: 6,
+    name: 'Salesforce JavaScript Developer I',
+    issuer: 'Salesforce',
+    year: '2025',
+    color: '#f59e0b',
+    icon: 'code',
+    link: 'https://www.salesforce.com/trailblazer/ntwsk',
+  },
+  {
+    id: 7,
+    name: 'Salesforce Agentforce Specialist',
+    issuer: 'Salesforce',
+    year: '2025',
+    color: '#a855f7',
+    icon: 'layers',
+    link: 'https://www.salesforce.com/trailblazer/ntwsk',
   },
 ]
 
@@ -119,13 +187,11 @@ export const stages = [
 export const aboutJson = {
   name: 'Nuttawut Sukaew',
   handle: 'ntwsk',
-  role: 'Salesforce Developer',
-  currentCompany: 'ATA IT',
+  role: 'Software Engineer',
+  currentCompany: 'ATA IT Limited (National Bank of Canada group)',
   previousCompanies: ['Accenture', 'I&I Group Public Company Limited'],
   skills: ['Apex', 'Aura Component', 'LWC', 'Salesforce Flow', 'Marketing Cloud', 'Dialogflow CX'],
-  certifications: ['SF Associate', 'SF Administrator', 'SF Platform App Builder'],
+  certifications: ['AWS Cloud Practitioner', 'SF Administrator', 'SF App Builder', 'SF Platform Developer I', 'SF Agentforce Specialist'],
   education: { degree: 'B.Sc. Computer Science', university: 'Chiang Mai University', year: 2020 },
-  openToWork: false,
-  remote: true,
   location: 'Thailand',
 }

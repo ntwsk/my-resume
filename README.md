@@ -1,8 +1,10 @@
 # Nuttawut Sukaew — Resume Site
 
-Personal resume landing page for **Nuttawut Sukaew** ([@ntwsk](https://github.com/ntwsk)), Salesforce Developer at ATA IT.
+Personal resume landing page for **Nuttawut Sukaew** ([@ntwsk](https://github.com/ntwsk)), Software Engineer at ATA IT Limited.
 
 Live: **https://ntwsk.github.io/my-resume/**
+
+> **Built with 100% vibe coding** — every component, hook, animation, and deployment was crafted through AI-assisted development with Claude. Zero lines written the boring way. This is what happens when curiosity meets a great AI and a terminal that never sleeps.
 
 ---
 
@@ -49,16 +51,37 @@ src/
 │   ├── Experience.jsx      # Accordion timeline cards — ATA IT / Accenture / I&I Group
 │   ├── Certifications.jsx  # Tilt cert cards + education block
 │   ├── Contact.jsx         # Contact links + footer
-│   └── Cursor.jsx          # Custom dot + ring cursor (desktop only)
+│   ├── Cursor.jsx          # Custom dot + ring cursor (desktop only)
+│   ├── GameHUD.jsx         # Game HUD — stage name + XP bar (top-right / bottom bar on mobile)
+│   ├── StageNav.jsx        # Vertical stage list — CLEARED / ACTIVE / LOCKED (desktop only)
+│   └── StageToast.jsx      # Toast notifications when crossing stage boundaries
 ├── data/
-│   └── resume.js           # ← All content lives here (profile, skills, experience, certs)
+│   └── resume.js           # ← All content lives here (profile, skills, experience, certs, stages)
 ├── hooks/
-│   └── useLenis.js         # Lenis smooth-scroll initialisation
-├── App.jsx                 # Root — wires Lenis + Cursor + all sections
+│   ├── useLenis.js         # Lenis smooth-scroll initialisation
+│   └── useGameProgress.js  # IntersectionObserver-driven stage tracking + XP calc
+├── App.jsx                 # Root — wires Lenis + Cursor + Game HUD + all sections
 └── index.css               # Tailwind v4 theme tokens, global styles, animations
 ```
 
 **To update content**, only edit `src/data/resume.js`. No other files need to change.
+
+---
+
+## Game-Stage Layer
+
+The site is framed as a six-stage game. As you scroll, a HUD tracks progress, a side nav shows which stages are CLEARED/ACTIVE/LOCKED, and toast pop-ups celebrate each stage advance — without removing or hiding any resume content (recruiter-safe).
+
+| # | Section | Codename | XP |
+|---|---|---|---|
+| 1 | `#hero` | PROFILE | 500 |
+| 2 | `#about` | ORIGINS | 700 |
+| 3 | `#skills` | ARSENAL | 1,200 |
+| 4 | `#experience` | QUESTS | 2,400 |
+| 5 | `#certifications` | TROPHIES | 1,800 |
+| 6 | `#contact` | BOSS | 1,800 |
+
+Total: **8,400 XP**. Stages, codenames, and XP values are configured in `src/data/resume.js` under the `stages` export.
 
 ---
 

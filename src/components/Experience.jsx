@@ -4,13 +4,13 @@ import { Briefcase, Calendar, ChevronRight, ChevronDown } from 'lucide-react'
 import { experience } from '../data/resume'
 
 const companyColors = {
-  'ATA IT':                              '#00ff88',
-  'Accenture':                           '#a855f7',
-  'I&I Group Public Company Limited':    '#0ea5e9',
+  'ATA IT Limited (National Bank of Canada group)': '#00ff88',
+  'Accenture':                                      '#a855f7',
+  'I&I Group Public Company Limited':               '#0ea5e9',
 }
 
 function ExperienceCard({ job, index }) {
-  const [open, setOpen] = useState(index === 0)
+  const [open, setOpen] = useState(true)
   const color = companyColors[job.company] ?? '#8892a4'
 
   return (
@@ -76,21 +76,51 @@ function ExperienceCard({ job, index }) {
               style={{ overflow: 'hidden' }}
             >
               <div className="px-6 pb-6 pt-0 ml-8" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
-                <ul className="mt-4 space-y-2.5">
-                  {job.highlights.map((h, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -16 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.07 }}
-                      className="flex items-start gap-3 text-sm leading-relaxed"
-                      style={{ color: '#8892a4' }}
-                    >
-                      <ChevronRight size={13} className="mt-0.5 shrink-0" style={{ color }} />
-                      {h}
-                    </motion.li>
-                  ))}
-                </ul>
+                {job.roles ? (
+                  <div className="mt-4 space-y-5">
+                    {job.roles.map((roleGroup, ri) => (
+                      <div key={ri}>
+                        <div className="flex items-center gap-2 mb-2.5">
+                          <div className="w-0.5 h-4 rounded-full shrink-0" style={{ background: color }} />
+                          <span className="font-mono text-xs font-semibold uppercase tracking-widest" style={{ color }}>
+                            {roleGroup.title}
+                          </span>
+                        </div>
+                        <ul className="space-y-2 ml-4">
+                          {roleGroup.highlights.map((h, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -16 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.04 + ri * 0.1 }}
+                              className="flex items-start gap-3 text-sm leading-relaxed"
+                              style={{ color: '#8892a4' }}
+                            >
+                              <ChevronRight size={13} className="mt-0.5 shrink-0" style={{ color }} />
+                              {h}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="mt-4 space-y-2.5">
+                    {job.highlights.map((h, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.07 }}
+                        className="flex items-start gap-3 text-sm leading-relaxed"
+                        style={{ color: '#8892a4' }}
+                      >
+                        <ChevronRight size={13} className="mt-0.5 shrink-0" style={{ color }} />
+                        {h}
+                      </motion.li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </motion.div>
           )}

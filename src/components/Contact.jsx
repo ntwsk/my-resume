@@ -53,9 +53,6 @@ export default function Contact() {
             Let's build something
             <span className="block" style={{ color: '#00ff88' }}>great together.</span>
           </h2>
-          <p className="max-w-md mx-auto text-base leading-relaxed" style={{ color: '#8892a4' }}>
-            Open to interesting Salesforce & Cloud roles. Response time is fast — drop a message.
-          </p>
         </motion.div>
 
         {/* Contact cards */}
@@ -103,12 +100,15 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="flex items-center justify-center gap-2 font-mono text-xs mb-2" style={{ color: '#3d4a5c' }}>
+          <div className="flex items-center justify-center gap-2 font-mono text-xs mb-1" style={{ color: '#3d4a5c' }}>
             <Terminal size={12} />
-            <span>Designed & built by Nuttawut Sukaew</span>
+            <span>Built end-to-end by Nuttawut Sukaew</span>
           </div>
+          <p className="font-mono text-xs mb-2" style={{ color: '#a855f7', opacity: 0.7 }}>
+            100% vibe-coded with Claude Code — zero lines written
+          </p>
           <p className="font-mono text-xs" style={{ color: '#1f2937' }}>
-            React · Vite · Tailwind · Framer Motion · GSAP · Lenis
+            Tech Stacks: React · Vite · Tailwind · GitHub Pages
           </p>
         </motion.div>
       </div>

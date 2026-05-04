@@ -17,6 +17,7 @@ A deep-dive into every technology used in this project and a step-by-step walkth
 9. [Icons — lucide-react](#9-icons--lucide-react)
 10. [Deployment — gh-pages](#10-deployment--gh-pages)
 11. [How the Website Works Step by Step](#11-how-the-website-works-step-by-step)
+12. [Game-Stage System](#12-game-stage-system)
 
 ---
 
@@ -89,8 +90,11 @@ createRoot(document.getElementById('root')).render(
 
 ```
 App
-├── Cursor       — custom mouse cursor (portal-like, fixed position)
-├── Navbar       — fixed top navigation
+├── Cursor        — custom mouse cursor (portal-like, fixed position)
+├── Navbar        — fixed top navigation
+├── GameHUD       — fixed game HUD (stage name + XP bar)
+├── StageNav      — fixed left-side stage list (desktop only)
+├── StageToast    — bottom-right toast queue for stage transitions
 └── <main>
     ├── Hero          — full-screen landing
     ├── About         — code editor + stat cards
@@ -321,3 +325,118 @@ Tailwind's responsive prefixes (`lg:`, `sm:`) control layout breakpoints. On mob
 - The desktop nav hides (`hidden md:flex`) and the hamburger button appears.
 - Clicking the hamburger triggers `AnimatePresence` to fade in the mobile drawer menu.
 - The custom cursor is disabled (the `(hover: none)` media query check in `Cursor.jsx`).
+- The GameHUD collapses from a top-right panel to a thin bottom bar.
+- The StageNav (left side) is hidden completely; the HUD + section anchors are sufficient.
+
+### Step 11 — Game-stage progression
+As you scroll, `useGameProgress` (the shared hook) updates the current stage from 1 → 6. Each stage advance does three things in parallel:
+- **HUD**: the codename text changes (e.g. `STAGE 03 — ARSENAL`) and the XP bar springs forward by the new stage's XP value.
+- **StageNav**: the previous row flips to `✓ CLEARED` (green); the new row gains the active green pill via Framer Motion `layoutId="stage-active-bg"`.
+- **StageToast**: a bottom-right card slides in showing `✓ STAGE XX CLEARED  +XP  → ENTERING STAGE YY: CODENAME` and auto-dismisses after 3.2 seconds.
+
+Scrolling **back up** decreases `currentStage` (HUD reflects this) but `unlockedIds` is monotonic, so previously-visited stages stay marked `CLEARED` in StageNav. Toasts only fire when `nextStage > prevStage`, so scrolling back never produces a popup.
+
+---
+
+## 12. Game-Stage System
+
+The game framing is a thin layer on top of the existing six sections. The resume content, layout, and animations are untouched — only three new persistent UI elements (HUD, stage nav, toast) and one shared hook were added.
+
+### The six stages
+
+Defined in `src/data/resume.js`:
+
+| # | Section | Codename | XP | Description |
+|---|---|---|---|---|
+| 1 | `#hero` | PROFILE | 500 | Identify the operator |
+| 2 | `#about` | ORIGINS | 700 | Read background lore |
+| 3 | `#skills` | ARSENAL | 1,200 | Inventory unlocked tools |
+| 4 | `#experience` | QUESTS | 2,400 | Mission history |
+| 5 | `#certifications` | TROPHIES | 1,800 | Earned achievements |
+| 6 | `#contact` | BOSS | 1,800 | Initiate contact protocol |
+
+Total XP: **8,400**. Stage 1 is pre-credited on page load, so the HUD reads `XP 500 / 8,400` immediately.
+
+### `useGameProgress` hook
+
+`src/hooks/useGameProgress.js` is the shared brain. Each consumer (HUD, nav, toast) calls it independently — `IntersectionObserver` is a cheap browser primitive, so having one observer per consumer is fine.
+
+Inside the hook:
+
+```js
+const obs = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return
+      const stage = stages.find((s) => s.id === e.target.id)
+      if (!stage) return
+      setCurrentStage(stage.num)
+      setUnlockedIds((prev) => prev.has(stage.id) ? prev : new Set([...prev, stage.id]))
+    })
+  },
+  { rootMargin: '-40% 0px -55% 0px' }    // detection band: 40%–45% from top
+)
+```
+
+Returns:
+
+| Field | Type | Notes |
+|---|---|---|
+| `currentStage` | number 1–6 | Reflects scroll position; can decrease when scrolling up |
+| `currentStageId` | string | `'hero' \| 'about' \| ...` |
+| `xpEarned` | number | Sum of XP for all stages in `unlockedIds` |
+| `xpTotal` | number | Always 8,400 |
+| `scrollProgress` | 0..1 | Raw `scrollY / (docHeight - viewport)` |
+| `unlockedIds` | `Set<string>` | Monotonic — once added, never removed |
+
+### `GameHUD.jsx`
+
+Fixed top-right panel on desktop, thin bottom bar on mobile (`md:` Tailwind breakpoint).
+
+- Shows `NUTTAWUT.exe` heading, `● ONLINE` indicator, current stage codename, and an animated XP bar.
+- The XP bar is a `motion.div` with a green→blue gradient. Its width is animated with a spring (`stiffness: 60, damping: 20`) so it springs forward smoothly as XP changes.
+- Uses the existing `.g-border` gradient-border class and `backdrop-filter: blur(16px)` for the frosted-glass effect.
+
+### `StageNav.jsx`
+
+Fixed left-side panel, **desktop only** (`hidden lg:flex`).
+
+- Each of the 6 stages is rendered as an anchor (`<a href="#hero">` etc.) — Lenis intercepts the click for smooth scrolling.
+- Status derivation per stage:
+  - `stage.num === currentStage` → **ACTIVE** (`◉` pulsing, green pill via `layoutId="stage-active-bg"`)
+  - `unlockedIds.has(stage.id) && !active` → **CLEARED** (`✓` green checkmark)
+  - else → **LOCKED** (`◯` dim — but still clickable)
+- The active green pill animates between rows with a Framer Motion spring, identical to the Navbar's active-link pill.
+
+### `StageToast.jsx`
+
+Toast manager renders queued popups at bottom-right (or above the HUD on mobile).
+
+- Tracks `currentStage` against a `useRef` of the previous value. When `currentStage > prev`, it pushes a new toast onto the queue.
+- Each toast has a unique numeric `id` and is removed via `setTimeout(..., 3200)` — closure captures the id, so React's filter call removes the right one even after re-renders.
+- `AnimatePresence` handles enter/exit: slide-in from `x: 120, opacity: 0` and slide-out the same way.
+- The check `currentStage > prev` ensures **no toast fires on scroll-back**.
+
+### `.stage-pulse` keyframe
+
+Small CSS keyframe in `index.css` for the pulsing `◉` indicator on the active stage:
+
+```css
+@keyframes stage-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.stage-pulse { animation: stage-pulse 1.2s ease-in-out infinite; }
+```
+
+### Why three independent observer instances?
+
+The naive concern: "Three components calling `useGameProgress` means three IntersectionObservers — wasteful." In practice it's fine:
+
+- `IntersectionObserver` is a browser-native primitive; observing 6 elements with three observers costs essentially nothing.
+- All three observers fire at the same scroll position with the same rootMargin, so the three components stay in lock-step.
+- Avoiding a module-level singleton keeps the hook pure-React, easier to test, and free of stale-state bugs in StrictMode.
+
+### Recruiter-safety
+
+The game layer is purely additive — it never hides, replaces, or reorders the actual resume content. A recruiter who never engages with the HUD can still read the name, current job title, three previous companies, certifications, and contact email in the standard top-to-bottom flow.

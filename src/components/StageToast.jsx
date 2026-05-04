@@ -34,7 +34,7 @@ export default function StageToast() {
   }, [currentStage])
 
   return (
-    <div className="fixed z-50 flex flex-col gap-2 items-end bottom-16 right-4 md:bottom-4 pointer-events-none">
+    <div className="fixed z-50 flex flex-col gap-2 items-end right-4 bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] md:bottom-4 pointer-events-none">
       <AnimatePresence>
         {toasts.map((toast) => (
           <motion.div
