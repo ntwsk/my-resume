@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Calendar, ChevronRight, ChevronDown } from 'lucide-react'
 import { experience } from '../data/resume'
 
@@ -9,17 +9,9 @@ const companyColors = {
   'I&I Group Public Company Limited':               '#0ea5e9',
 }
 
-function ExperienceCard({ job, index, sectionInView }) {
-  const [open, setOpen] = useState(false)
+function ExperienceCard({ job, index }) {
+  const [open, setOpen] = useState(true)
   const color = companyColors[job.company] ?? '#8892a4'
-
-  useEffect(() => {
-    if (sectionInView) {
-      const t = setTimeout(() => setOpen(true), index * 150)
-      return () => clearTimeout(t)
-    }
-    setOpen(false)
-  }, [sectionInView, index])
 
   return (
     <motion.div
@@ -139,11 +131,8 @@ function ExperienceCard({ job, index, sectionInView }) {
 }
 
 export default function Experience() {
-  const sectionRef = useRef(null)
-  const sectionInView = useInView(sectionRef, { once: false })
-
   return (
-    <section ref={sectionRef} id="experience" className="py-28 px-6" style={{ background: 'linear-gradient(180deg, #040810 0%, #020305 100%)' }}>
+    <section id="experience" className="py-28 px-6" style={{ background: 'linear-gradient(180deg, #040810 0%, #020305 100%)' }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -168,7 +157,7 @@ export default function Experience() {
 
           <div className="lg:pl-12 space-y-5">
             {experience.map((job, i) => (
-              <ExperienceCard key={job.id} job={job} index={i} sectionInView={sectionInView} />
+              <ExperienceCard key={job.id} job={job} index={i} />
             ))}
           </div>
         </div>

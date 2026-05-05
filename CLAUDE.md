@@ -36,7 +36,7 @@ If you ship a code change without updating LEARN.md, you've left the project in 
 - **Theme colors are tokens** in `src/index.css` under `@theme`. Don't introduce ad-hoc hex values for theme-wide changes; component-local accent hexes (e.g. category colors in `Skills.jsx`) are fine.
 - **Vite base path is `/my-resume/`.** Reference any `public/` asset with `${import.meta.env.BASE_URL}filename.ext` — never absolute paths.
 - **Two experience shapes coexist** — `highlights: string[]` (flat) **or** `roles: [{ title, highlights }]` (grouped). The render logic in `Experience.jsx` already supports both. Don't break that branch.
-- **Cards in Experience are scroll-driven.** They auto-expand (with stagger) when the section enters the viewport and collapse when it leaves. `sectionInView` is passed from `Experience` → `ExperienceCard` via `useInView`. Don't revert to a static default-open state.
+- **Cards in Experience always default to `open: true`.** All three company cards are expanded on render. Don't add scroll-driven open/close logic.
 - **No backwards-compatibility shims, dead code, or speculative abstractions** unless explicitly requested.
 
 ## Deploy contract
